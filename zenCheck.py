@@ -1,6 +1,7 @@
 from zenpy import Zenpy
 from zenpy.lib.api_objects import Ticket
 from win10toast import ToastNotifier
+import time
 
 creds = {
     'email' : 'spstech@columbia.edu',
@@ -8,15 +9,17 @@ creds = {
     'subdomain' : 'spsservice'
 }
 
-zenpyClient = Zenpy(**creds)
 toaster = ToastNotifier()
 
 newTicket = []
 
-for ticket in zenpyClient.search(type='ticket', status='new'):
-    if ticket not in newTicket:
-        newTicket.append(ticket)
-        text = "Check ticket: " + str(ticket)
-        toaster.show_toast("New Ticket", text, duration = 15)
-    else:
-        continue
+while 1 != 2:
+    zenpyClient = Zenpy(**creds)
+    for ticket in zenpyClient.search(type='ticket', status='new'):
+        if str(ticket) in newTicket:
+            continue
+        else:
+            newTicket.append(str(ticket))
+            text = str(ticket.subject)
+            toaster.show_toast("New Ticket", text, duration = 10)
+    time.sleep(30)
