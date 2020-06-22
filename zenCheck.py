@@ -4,9 +4,9 @@ from win10toast import ToastNotifier
 import time
 
 creds = {
-    'email' : 'spstech@columbia.edu',
-    'password' : '%$MjiKirk106%*',
-    'subdomain' : 'spsservice'
+    'email' : username,
+    'password' : password,
+    'subdomain' : the first part of the url
 }
 
 toaster = ToastNotifier()
